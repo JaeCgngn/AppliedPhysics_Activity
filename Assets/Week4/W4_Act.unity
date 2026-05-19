@@ -288,12 +288,12 @@ MonoBehaviour:
   treePrefab: {fileID: 7563051390839362532, guid: bb48b620ab72b1c4f896068fa4139768, type: 3}
   treeCount: 15
   treeSpacing: 5
-  areaSize: 10
-  maxHeight: 5
+  areaSize: 13.5
+  maxHeight: 6.88
   waterLevel: 0.4
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   treeLayer:
     serializedVersion: 2
     m_Bits: 8
