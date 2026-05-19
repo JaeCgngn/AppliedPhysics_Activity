@@ -286,9 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenerateTrees
   prefab: {fileID: 7563051390839362532, guid: bb48b620ab72b1c4f896068fa4139768, type: 3}
-  cam: {fileID: 192411827}
-  maxDistance: 100
-  checkRadius: 2
+  treeCount: 20
+  areaSize: 50
+  checkRadius: 1
   treeLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -425,8 +425,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4256f5f95a59d064faed0b0f8c3dc612, type: 3}
   m_PrefabInstance: {fileID: 1815968091}
   m_PrefabAsset: {fileID: 0}
---- !u!154 &1355770230
-TerrainCollider:
+--- !u!64 &1355770230
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -435,16 +435,18 @@ TerrainCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_TerrainData: {fileID: 0}
-  m_EnableTreeColliders: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: 4256f5f95a59d064faed0b0f8c3dc612, type: 3}
 --- !u!1001 &1815968091
 PrefabInstance:
   m_ObjectHideFlags: 0
