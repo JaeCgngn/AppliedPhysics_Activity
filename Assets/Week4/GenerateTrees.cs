@@ -2,48 +2,106 @@ using UnityEngine;
 
 public class GenerateTrees : MonoBehaviour
 {
-    public GameObject treePrefab;
-    public int treeCount = 15;
-    public int treeSpacing = 5;
-    public float areaSize = 10f;
-    public float maxHeight = 5f;
-    public float waterLevel = 0.4f;
-    public LayerMask groundLayer;
+    public GameObject prefab;
+
+    public int treeCount = 20;
+
+    public float areaSize = 50f;
+
+    public float checkRadius = 3f;
+
     public LayerMask treeLayer;
 
     private void Start()
     {
+        Generate();
+    }
+
+    void Generate()
+    {
         int spawnedTrees = 0;
 
-        while (spawnedTrees < treeCount)
+        int attempts = 0;
+
+        while (spawnedTrees < treeCount && attempts < 500)
         {
-            float randomX = Random.Range(0, areaSize);
-            float randomY = Random.Range(0, areaSize);
+            attempts++;
 
-            Vector3 rayOrigin = new Vector3(randomX, 10f, randomY);
-            RaycastHit hit;
+            Vector3 randomPosition = GetRandomPosition();
 
-            if (Physics.Raycast (rayOrigin, Vector3.down, out hit, maxHeight * 2f, groundLayer))
+            if (TryGetGroundPosition(randomPosition, out Vector3 hitPoint))
             {
-                if (hit.point.y <= waterLevel)
+                if (CanPlaceTree(hitPoint))
                 {
-                    continue;
+                    SpawnTree(hitPoint);
+
+                    spawnedTrees++;
                 }
+            }
+        }
+    }
 
-                Collider[] nearby = Physics.OverlapSphere(hit.point, treeSpacing, treeLayer);
+    Vector3 GetRandomPosition()
+    {
+        float randomX =
+            Random.Range(-areaSize, areaSize);
 
-                if (nearby.Length > 0) 
-                {
-                    continue;
-                }
+        float randomZ =
+            Random.Range(-areaSize, areaSize);
 
-                GameObject tree = Instantiate(treePrefab, hit.point, Quaternion.Euler(0, Random.Range(0,360), 0));
+        return new Vector3(randomX, 100f, randomZ);
+    }
 
-                tree.layer = LayerMask.NameToLayer("Tree");
+    bool TryGetGroundPosition(
+        Vector3 rayOrigin,
+        out Vector3 hitPoint
+    )
+    {
+        RaycastHit hit;
 
-                spawnedTrees++;
+        if (Physics.Raycast(
+            rayOrigin,
+            Vector3.down,
+            out hit,
+            200f))
+        {
+            if (hit.collider.CompareTag("Ground"))
+            {
+                hitPoint = hit.point;
+
+                return true;
             }
         }
 
+        hitPoint = Vector3.zero;
+
+        return false;
+    }
+
+    bool CanPlaceTree(Vector3 position)
+    {
+        Collider[] colliders =
+            Physics.OverlapSphere(
+                position,
+                checkRadius,
+                treeLayer
+            );
+
+        return colliders.Length == 0;
+    }
+
+    void SpawnTree(Vector3 position)
+    {
+        Instantiate(
+            prefab,
+            position,
+            Quaternion.Euler(
+                0,
+                Random.Range(0, 360),
+                0
+            )
+        );
+
+        Debug.Log("Tree Spawned");
     }
 }

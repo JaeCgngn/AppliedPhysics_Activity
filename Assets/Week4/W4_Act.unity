@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 192411825}
   serializedVersion: 2
   m_LocalRotation: {x: 0.47869182, y: 0, z: 0, w: 0.8779831}
-  m_LocalPosition: {x: 0, y: 13.94, z: -16.61}
+  m_LocalPosition: {x: -0, y: 25.3, z: -23.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,15 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7beb2ed831719b4dbd3799721e40abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenerateTrees
-  treePrefab: {fileID: 7563051390839362532, guid: bb48b620ab72b1c4f896068fa4139768, type: 3}
-  treeCount: 15
-  treeSpacing: 5
-  areaSize: 13.5
-  maxHeight: 6.88
-  waterLevel: 0.4
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  prefab: {fileID: 7563051390839362532, guid: bb48b620ab72b1c4f896068fa4139768, type: 3}
+  cam: {fileID: 192411827}
+  maxDistance: 100
+  checkRadius: 2
   treeLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -324,7 +319,7 @@ GameObject:
   - component: {fileID: 728925791}
   - component: {fileID: 728925790}
   - component: {fileID: 728925789}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,37 +420,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1754799295
+--- !u!1 &1355770226 stripped
 GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4256f5f95a59d064faed0b0f8c3dc612, type: 3}
+  m_PrefabInstance: {fileID: 1815968091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!154 &1355770230
+TerrainCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1754799296}
-  m_Layer: 0
-  m_Name: Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1754799296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754799295}
+  m_GameObject: {fileID: 1355770226}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29262, y: 0.2, z: -0.66813}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_TerrainData: {fileID: 0}
+  m_EnableTreeColliders: 1
 --- !u!1001 &1815968091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,10 +501,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4256f5f95a59d064faed0b0f8c3dc612, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4256f5f95a59d064faed0b0f8c3dc612, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4256f5f95a59d064faed0b0f8c3dc612, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1355770230}
   m_SourcePrefab: {fileID: 100100000, guid: 4256f5f95a59d064faed0b0f8c3dc612, type: 3}
 --- !u!1 &1974477428
 GameObject:
@@ -652,5 +652,4 @@ SceneRoots:
   - {fileID: 1974477430}
   - {fileID: 1815968091}
   - {fileID: 728925792}
-  - {fileID: 1754799296}
   - {fileID: 540421692}
