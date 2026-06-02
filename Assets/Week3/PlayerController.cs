@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
     public float speed = 5f;
+    //public float gravity = -9.81f;
 
     void Update()
     {
@@ -13,5 +14,7 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
+
+       
     }
 }
