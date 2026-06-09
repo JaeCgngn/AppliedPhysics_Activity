@@ -21,14 +21,23 @@ public class Knockback : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Player collided with knockback object!");
-            
-            if (rb != null)
+            Rigidbody enemyRb = collision.rigidbody;
+
+            Vector3 knockbackDirection;
+
+            if (enemyRb != null)
             {
-                Vector3 knockbackDirection = (transform.position - collision.transform.position).normalized;
-                knockbackDirection.y = 0.1f;
-                rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+                knockbackDirection = enemyRb.linearVelocity.normalized;
             }
+            else
+            {
+                knockbackDirection = (transform.position - collision.transform.position).normalized;
+            }
+
+            knockbackDirection += Vector3.up * 0.2f;
+            knockbackDirection.Normalize();
+
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
         }
     }
 }
